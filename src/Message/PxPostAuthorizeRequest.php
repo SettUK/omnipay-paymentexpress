@@ -33,6 +33,16 @@ class PxPostAuthorizeRequest extends AbstractRequest
         return $this->setParameter('password', $value);
     }
 
+    public function getClientType()
+    {
+        return $this->getParameter('ClientType');
+    }
+
+    public function setClientType($value)
+    {
+        return $this->setParameter('ClientType', $value);
+    }
+
     public function getEndpoint()
     {
         return $this->getTestMode() === true ? $this->testEndpoint : $this->liveEndpoint;
@@ -185,6 +195,10 @@ class PxPostAuthorizeRequest extends AbstractRequest
 
         if ($this->getReceiptEmail()) {
             $data->ReceiptEmail = $this->getReceiptEmail();
+        }
+
+        if ($this->getClientType()) {
+            $data->ClientType = $this->getClientType();
         }
 
         return $data;

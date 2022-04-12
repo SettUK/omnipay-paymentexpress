@@ -97,6 +97,16 @@ class PxPayAuthorizeRequest extends AbstractRequest
         return $this->setParameter('pxPostPassword', $value);
     }
 
+    public function getClientType()
+    {
+        return $this->getParameter('ClientType');
+    }
+
+    public function setClientType($value)
+    {
+        return $this->setParameter('ClientType', $value);
+    }
+
     public function getEndpoint()
     {
         return $this->getTestMode() === true ? $this->testEndpoint : $this->liveEndpoint;
@@ -275,6 +285,10 @@ class PxPayAuthorizeRequest extends AbstractRequest
 
         if ($this->getForcePaymentMethod()) {
             $data->ForcePaymentMethod = $this->getForcePaymentMethod();
+        }
+
+        if ($this->getClientType()) {
+            $data->ClientType = $this->getClientType();
         }
 
         return $data;
